@@ -3,6 +3,9 @@ package com.monkey.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 用于velocity展示
+ */
 public class ViewObject {
     private Map<String, Object> objs = new HashMap<String, Object>();
     public void set(String key, Object value) {

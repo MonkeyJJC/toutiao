@@ -37,6 +37,9 @@ public class HomeController {
 
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Model model) {
+        /**
+         * 封装，velocity直接访问ViewObject对象
+         */
         model.addAttribute("vos", getNews(0, 0, 10));
         return "home";
     }

@@ -1,7 +1,9 @@
 package com.monkey;
 
+import com.monkey.dao.LoginTicketDAO;
 import com.monkey.dao.NewsDAO;
 import com.monkey.dao.UserDAO;
+import com.monkey.model.LoginTicket;
 import com.monkey.model.News;
 import com.monkey.model.User;
 import org.junit.Assert;
@@ -24,6 +26,9 @@ public class InitDatabaseTests {
 
     @Autowired
     NewsDAO newsDAO;
+
+    @Autowired
+    LoginTicketDAO loginTicketDAO;
 
     @Test
     public void initData() {
@@ -50,6 +55,14 @@ public class InitDatabaseTests {
 
             user.setPassword("newpassword");
             userDAO.updatePassword(user);
+
+            LoginTicket ticket = new LoginTicket();
+            ticket.setStatus(0);
+            ticket.setUserId(i+1);
+            ticket.setExpired(date);
+            ticket.setTicket(String.format("TICKET%d", i+1));
+            loginTicketDAO.addTicket(ticket);
+
         }
 
         Assert.assertEquals("newpassword", userDAO.selectById(1).getPassword());
